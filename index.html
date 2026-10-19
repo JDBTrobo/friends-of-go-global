@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Friends of Go Global — partner with an apostolic family reaching the unreached with the Gospel through long-term relationships with indigenous pastors and missionary workers." />
+  <title>Friends of Go Global</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --soft: #F5F5F5;
+      --border: #D9D9D9;
+      --muted: #787878;
+      --navy: #031E3B;
+      --blue: #4F84F8;
+      --dark: #0E0E0E;
+      --max: 1200px;
+      --pad: clamp(1.25rem, 4vw, 2.5rem);
+      --section: clamp(4rem, 10vw, 7rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--dark);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .wrap {
+      width: min(100% - (var(--pad) * 2), var(--max));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+    .eyebrow--light { color: rgba(255,255,255,0.65); }
+
+    h1, h2, .display {
+      font-family: "Bebas Neue", "DM Sans", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    h1 { font-size: clamp(3rem, 9vw, 5.5rem); }
+    h2 { font-size: clamp(2.25rem, 5.5vw, 3.5rem); margin-bottom: 1.25rem; }
+    h3 {
+      font-family: "DM Sans", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.65rem;
+    }
+    .lead {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 38rem;
+    }
+    .lead--light { color: rgba(255,255,255,0.78); }
+    p + p { margin-top: 1rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.95rem 1.6rem;
+      border: 1.5px solid currentColor;
+      border-radius: 0;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--dark);
+      border-color: var(--dark);
+    }
+    .btn-outline:hover { background: var(--dark); color: var(--white); }
+    .btn-outline-light {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline-light:hover { background: var(--white); color: var(--navy); }
+    .btn-solid {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .btn-solid:hover { background: #3a6fe0; border-color: #3a6fe0; }
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .btn-navy:hover { background: #052a52; border-color: #052a52; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.75rem; }
+
+    /* —— Nav —— */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(3, 30, 59, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 0.9rem 0;
+      min-height: 4.25rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .brand img { width: 36px; height: 36px; object-fit: contain; }
+    .brand-text {
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .brand-text span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.1rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta .btn {
+      padding: 0.7rem 1.2rem;
+      font-size: 0.8rem;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--white);
+    }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      min-height: min(88vh, 780px);
+      display: flex;
+      align-items: flex-end;
+      color: var(--white);
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(3,30,59,0.35) 0%, rgba(3,30,59,0.55) 40%, rgba(3,30,59,0.92) 100%),
+        url("https://images.squarespace-cdn.com/content/v1/61116d5bf3a0252d78d091bb/ba0d8abb-4adf-459d-9af1-9127f05aeb22/54434353596_99d7352330_o.jpg") center / cover no-repeat;
+      filter: grayscale(100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: clamp(3rem, 8vw, 5.5rem) 0;
+      max-width: 48rem;
+    }
+    .hero .lead { color: rgba(255,255,255,0.85); margin-top: 1.25rem; }
+
+    /* —— Sections —— */
+    .section { padding: var(--section) 0; }
+    .section--soft { background: var(--soft); }
+    .section--navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .section--navy .muted { color: rgba(255,255,255,0.65); }
+    .section-head { max-width: 40rem; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head.center .lead { margin-inline: auto; }
+    .muted { color: var(--muted); }
+
+    /* —— Cards / grids —— */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 1.75rem 1.6rem;
+      height: 100%;
+    }
+    .section--soft .card { border-color: transparent; box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border);
+      color: var(--navy);
+    }
+    .card-icon svg { width: 1.15rem; height: 1.15rem; }
+    .card p { color: var(--muted); font-size: 0.98rem; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .split-media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--navy);
+    }
+    .split-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+    .split-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(3,30,59,0.25), transparent 60%);
+      pointer-events: none;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-top: 2.5rem;
+    }
+    .pillar {
+      background: var(--navy);
+      padding: 1.75rem 1.35rem;
+      text-align: center;
+    }
+    .pillar strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .pillar span {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.45;
+    }
+
+    /* —— Give band —— */
+    .give-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: clamp(1.75rem, 4vw, 3rem);
+    }
+    .give-panel .lead { max-width: none; }
+    .give-aside {
+      background: var(--soft);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+    }
+    .give-aside h3 { margin-bottom: 0.75rem; }
+    .give-aside ul { margin: 1rem 0 1.5rem; }
+    .give-aside li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.55rem;
+    }
+    .give-aside li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+    }
+
+    /* —— Newsletter —— */
+    .nl-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      max-width: 52rem;
+      margin-inline: auto;
+    }
+    .nl-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* —— Live calls —— */
+    .call-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 2rem 1.75rem;
+      height: 100%;
+    }
+    .call-card h3 { color: var(--white); }
+    .call-card p { color: rgba(255,255,255,0.7); font-size: 0.98rem; }
+    .call-meta {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    /* —— Quote / note —— */
+    .note {
+      border-left: 3px solid var(--blue);
+      padding: 0.25rem 0 0.25rem 1.25rem;
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 36rem;
+    }
+
+    /* —— Footer —— */
+    .site-footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 3.5rem 0 2rem;
+      font-size: 0.9rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-brand img { width: 32px; height: 32px; }
+    .footer-brand strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .footer-brand span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+    }
+    .footer-col h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1rem;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 0.55rem;
+      transition: color 0.15s ease;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.75rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.65); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* —— Responsive —— */
+    @media (max-width: 960px) {
+      .grid-3, .pillars { grid-template-columns: 1fr 1fr; }
+      .split, .give-panel, .nl-box, .footer-top { grid-template-columns: 1fr; }
+      .nl-box { text-align: center; }
+      .nl-actions { justify-content: center; }
+      .split-media { order: -1; max-height: 320px; }
+    }
+    @media (max-width: 760px) {
+      .nav-toggle { display: flex; }
+      .nav-links, .nav-cta {
+        display: none;
+      }
+      .nav.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 1.25rem var(--pad) 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .nav.open .nav-cta {
+        display: block;
+        position: absolute;
+        top: calc(100% + 11.5rem);
+        left: var(--pad);
+        right: var(--pad);
+        padding-bottom: 1.25rem;
+        background: var(--navy);
+        z-index: 2;
+      }
+      .nav.open .nav-cta::before {
+        content: "";
+        position: absolute;
+        left: calc(var(--pad) * -1);
+        right: calc(var(--pad) * -1);
+        top: -0.5rem;
+        bottom: 0;
+        background: var(--navy);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        z-index: -1;
+      }
+      .grid-3, .pillars, .grid-2 { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a class="brand" href="#top">
+          <img src="https://images.squarespace-cdn.com/content/v1/61116d5bf3a0252d78d091bb/06704e00-09d1-42ef-877f-5762003a3164/goglobal-symbol-white.png" alt="Go Global" width="36" height="36" />
+          <div class="brand-text">
+            Friends of Go Global
+            <span>An arm of Go Global Family</span>
+          </div>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#friends">About Friends</a></li>
+          <li><a href="#mission">Stories</a></li>
+          <li><a href="#give">Give</a></li>
+          <li><a href="#updates">Updates</a></li>
+          <li><a href="#calls">Live calls</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a class="btn btn-solid" href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer">Give</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-bg" role="img" aria-label="Worship and mission photography"></div>
+      <div class="wrap hero-content">
+        <p class="eyebrow eyebrow--light">Friends of Go Global</p>
+        <h1>Join the adventure.<br />See the Gospel go.</h1>
+        <p class="lead">
+          A digital home for people who want to partner with Go Global as we reach the unreached —
+          through long-term relationships with indigenous pastors and apostolic missionary workers.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="#friends">Become a Friend</a>
+          <a class="btn btn-outline-light" href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer">Give today</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Friends are -->
+    <section class="section" id="friends">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">About Friends</p>
+          <h2>Who Friends of Go Global are</h2>
+          <p class="lead">
+            Friends are individuals and households who want to walk with us — praying, giving,
+            learning, and sharing in the joy of seeing the kingdom expand among the nations.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+            </div>
+            <h3>Partners in the mission</h3>
+            <p>You care that the unreached hear the Gospel, and you want a clear, trusted way to stand with those who are there for the long haul.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>Part of the adventure</h3>
+            <p>Receive updates, join live calls with pastors, and stay close to what God is doing — not as spectators, but as friends who share the journey.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 19V5h6l2 3h8v11H4z"/></svg>
+            </div>
+            <h3>Distinct from church partnership</h3>
+            <p>Churches exploring formal partnership with Go Global follow a different pathway on our main site. Friends is for personal supporters and prayer partners.</p>
+          </article>
+        </div>
+        <p class="note">
+          Looking for church partnership or training? Visit
+          <a href="https://www.goglobalfamily.org" target="_blank" rel="noopener noreferrer" style="color:var(--navy);text-decoration:underline;text-underline-offset:2px;">goglobalfamily.org</a>
+          — Friends of Go Global sits alongside that work as our outward-facing home for individual supporters.
+        </p>
+      </div>
+    </section>
+
+    <!-- What Go Global is doing -->
+    <section class="section section--soft" id="mission">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <p class="eyebrow">The work</p>
+            <h2>Reaching the unreached with the Gospel</h2>
+            <p class="muted">
+              Go Global is an apostolic family of churches. At the heart of our life together is
+              fellowship — shared vision, values, and a commitment to make disciples and plant churches.
+            </p>
+            <p class="muted">
+              We focus on long-term relationships with indigenous pastors and apostolic missionary
+              workers. We multiply disciples, establish churches, release ministries, and strengthen
+              leaders — Word and Spirit, aiming for sustainable churches rather than creating dependency.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-outline" href="https://www.goglobalfamily.org" target="_blank" rel="noopener noreferrer">Explore Go Global Family</a>
+            </div>
+          </div>
+          <div class="split-media">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/61116d5bf3a0252d78d091bb/517351fc-92b6-479a-a1dd-36fd4a97257f/goglobal-thumbnail.jpg"
+              alt="Go Global — family of churches"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pillars on navy -->
+    <section class="section section--navy" aria-label="Vision pillars">
+      <div class="wrap">
+        <div class="section-head center">
+          <p class="eyebrow eyebrow--light">Our shared pursuit</p>
+          <h2>What we are building together</h2>
+          <p class="lead lead--light">
+            Multiplying disciples, establishing churches, releasing ministries, strengthening leaders —
+            across the nations, for the sake of the Gospel.
+          </p>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <strong>Disciples</strong>
+            <span>Multiplying followers of Jesus who make disciples</span>
+          </div>
+          <div class="pillar">
+            <strong>Churches</strong>
+            <span>Establishing healthy, sustainable local churches</span>
+          </div>
+          <div class="pillar">
+            <strong>Ministries</strong>
+            <span>Releasing people into Spirit-led service</span>
+          </div>
+          <div class="pillar">
+            <strong>Leaders</strong>
+            <span>Strengthening pastors and emerging apostolic workers</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Give -->
+    <section class="section" id="give">
+      <div class="wrap">
+        <div class="give-panel">
+          <div>
+            <p class="eyebrow">Give</p>
+            <h2>Your giving helps the Gospel go further</h2>
+            <p class="lead" style="color:var(--muted);">
+              We warmly welcome your financial partnership. Your gift helps equip leaders,
+              strengthen church plants, and advance the Gospel where it is most needed —
+              especially among the unreached.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-navy" href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer">Give securely</a>
+              <a class="btn btn-outline" href="mailto:admin@goglobalfamily.org?subject=Friends%20of%20Go%20Global%20%E2%80%94%20giving%20enquiry">Ask about giving</a>
+            </div>
+          </div>
+          <aside class="give-aside">
+            <h3>Where partnership goes</h3>
+            <ul>
+              <li>Indigenous pastors and missionary workers</li>
+              <li>Training and leadership strengthening</li>
+              <li>New and emerging church plants</li>
+              <li>Long-term relational mission, not short-term spectacle</li>
+            </ul>
+            <p style="font-size:0.85rem;color:var(--muted);">
+              Giving is processed via
+              <a href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer" style="color:var(--navy);text-decoration:underline;text-underline-offset:2px;">goglobalfamily.org/give</a>.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section section--soft" id="updates">
+      <div class="wrap">
+        <div class="nl-box">
+          <div>
+            <p class="eyebrow">Updates</p>
+            <h2>Stay close to the story</h2>
+            <p class="muted" style="max-width:32rem;">
+              Sign up for monthly updates from Go Global — stories from the field, prayer points,
+              and ways to walk with us as Friends.
+            </p>
+          </div>
+          <div class="nl-actions">
+            <a
+              class="btn btn-navy"
+              href="https://goglobalfamily.us8.list-manage.com/subscribe?id=39bde98915&amp;u=5e6827d915b85e2357fbfbb23"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Subscribe to updates</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live calls -->
+    <section class="section section--navy" id="calls">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow eyebrow--light">Live calls</p>
+          <h2>Meet pastors. Share the adventure.</h2>
+          <p class="lead lead--light">
+            Friends are invited into live conversations with indigenous pastors and missionary
+            workers — to listen, pray, ask questions, and see the kingdom expand with open eyes.
+          </p>
+        </div>
+        <div class="grid-2">
+          <article class="call-card">
+            <span class="call-meta">What to expect</span>
+            <h3>Warm, unhurried calls</h3>
+            <p>
+              Time online with men and women serving among the unreached and in emerging churches.
+              Hear how God is at work, learn how to pray well, and grow in friendship across cultures.
+            </p>
+          </article>
+          <article class="call-card">
+            <span class="call-meta">How to join</span>
+            <h3>Register your interest</h3>
+            <p>
+              Live-call dates are shared with Friends by email. Tell us you’d like to take part,
+              and we’ll keep you in the loop as gatherings are planned.
+            </p>
+            <div class="btn-row" style="margin-top:1.25rem;">
+              <a class="btn btn-solid" href="mailto:admin@goglobalfamily.org?subject=Friends%20of%20Go%20Global%20%E2%80%94%20live%20call%20interest&amp;body=Hello%2C%0A%0AI%20would%20like%20to%20register%20interest%20in%20Friends%20of%20Go%20Global%20live%20calls.%0A%0AName%3A%0ALocation%3A%0A%0AThank%20you.">Register interest</a>
+              <a class="btn btn-outline-light" href="https://goglobalfamily.us8.list-manage.com/subscribe?id=39bde98915&amp;u=5e6827d915b85e2357fbfbb23" target="_blank" rel="noopener noreferrer">Get the newsletter</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="section">
+      <div class="wrap" style="text-align:center;max-width:40rem;margin-inline:auto;">
+        <p class="eyebrow">Next step</p>
+        <h2>Walk with us</h2>
+        <p class="lead" style="margin-inline:auto;">
+          Whether you give, pray, subscribe, or join a live call — you are warmly welcome as a Friend of Go Global.
+        </p>
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-navy" href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer">Give</a>
+          <a class="btn btn-outline" href="https://goglobalfamily.us8.list-manage.com/subscribe?id=39bde98915&amp;u=5e6827d915b85e2357fbfbb23" target="_blank" rel="noopener noreferrer">Subscribe</a>
+          <a class="btn btn-outline" href="mailto:admin@goglobalfamily.org">Contact us</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <img src="https://images.squarespace-cdn.com/content/v1/61116d5bf3a0252d78d091bb/06704e00-09d1-42ef-877f-5762003a3164/goglobal-symbol-white.png" alt="" width="32" height="32" />
+            <div>
+              <strong>Friends of Go Global</strong>
+              <span>Outward-facing arm of Go Global Family</span>
+            </div>
+          </div>
+          <p style="max-width:22rem;line-height:1.55;">
+            Reaching the unreached with the Gospel through long-term relationships with indigenous pastors and apostolic missionary workers.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>On this site</h4>
+          <a href="#friends">About Friends</a>
+          <a href="#mission">The work</a>
+          <a href="#give">Give</a>
+          <a href="#updates">Updates</a>
+          <a href="#calls">Live calls</a>
+        </div>
+        <div class="footer-col">
+          <h4>Go Global Family</h4>
+          <a href="https://www.goglobalfamily.org" target="_blank" rel="noopener noreferrer">goglobalfamily.org</a>
+          <a href="https://www.goglobalfamily.org/give" target="_blank" rel="noopener noreferrer">Give</a>
+          <a href="mailto:admin@goglobalfamily.org">admin@goglobalfamily.org</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Go Global Family SCIO SC052784 (Scotland)</p>
+        <p>
+          <a href="https://www.goglobalfamily.org" target="_blank" rel="noopener noreferrer">Main site</a>
+          · Friends of Go Global draft
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var toggle = document.getElementById("navToggle");
+      if (!nav || !toggle) return;
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
